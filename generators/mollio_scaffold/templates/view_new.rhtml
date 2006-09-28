@@ -1,0 +1,13 @@
+<%%= start_form_tag :action => 'create<%= @suffix %>' %>
+
+	<fieldset>
+		<h3>New <%= singular_name %></h3>
+
+	  <%%= render :partial => 'form' %>
+		<%%= submit_row { submit_tag 'Create' } %>
+
+	</fieldset>
+
+<%%= end_form_tag %>
+
+<%%= link_to 'Back', :action => 'list<%= suffix %>' %>

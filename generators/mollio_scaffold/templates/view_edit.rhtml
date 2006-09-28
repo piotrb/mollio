@@ -1,0 +1,14 @@
+<%%= start_form_tag :action => 'update<%= @suffix %>', :id => @<%= singular_name %> %>
+
+	<fieldset>
+		<h3>Editing <%= singular_name %></h3>
+
+		<%%= render :partial => 'form' %>
+		<%%= submit_row { submit_tag 'Edit' } %>
+
+	</fieldset>
+
+<%%= end_form_tag %>
+
+<%%= link_to 'Show', :action => 'show<%= suffix %>', :id => @<%= singular_name %> %> |
+<%%= link_to 'Back', :action => 'list<%= suffix %>' %>
