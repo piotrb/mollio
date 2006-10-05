@@ -14,6 +14,7 @@ module MollioSupport
     super
     base.helper "mollio"
     base.before_filter :setup_page_info
+    base.before_filter :auto_select_menu
   end
 
   def add_breadcrumb(label, url)
@@ -27,6 +28,26 @@ module MollioSupport
       m[:selected] = true if m[:label] == name
       select_menu(names, m[:children])
     } if base if name
+  end
+
+  def auto_select_menu_helper(base = @page.menu)
+    if base
+      base.map { |m|
+        if m[:children]
+          m[:selected] = auto_select_menu_helper(m[:children])
+        elsif m[:show]
+          left = m[:show].reject { |k,v| params[k] == v } # whats left of m[:show] after matching params are removed
+          m[:selected] = left.empty? # select if all m[:show] elements matched
+        else
+          false
+        end
+      }.any?
+    end
+  end
+
+  def auto_select_menu
+    auto_select_menu_helper
+    true
   end
 
   def setup_page_info
