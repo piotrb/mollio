@@ -1,7 +1,5 @@
 <% for column in model_instance.class.content_columns -%>
-<p>
-  <b><%= column.human_name %>:</b> <%%=h @<%= singular_name %>.<%= column.name %> %>
-</p>
+<div><b><%= column.human_name %>:</b> <%%=h @<%= singular_name %>.<%= column.name %> %></div>
 <% end -%>
 
 <%%= link_to 'Edit', :action => 'edit<%= suffix %>', :id => @<%= singular_name %> %> |

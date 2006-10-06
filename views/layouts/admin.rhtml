@@ -13,6 +13,9 @@ http://creativecommons.org/licenses/GPL/2.0/
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title><%= @page.title %></title>
+<% @page.css.each do |css| -%>
+<%= stylesheet_link_tag(css) %>
+<% end -%>
 <%= stylesheet_link_tag(@page.template_base + "mollio_fix.css") %>
 <link rel="stylesheet" type="text/css" href="<%= @page.template_base %>css/main.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="<%= @page.template_base %>css/print.css" media="print" />

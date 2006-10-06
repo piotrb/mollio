@@ -8,6 +8,8 @@ module MollioSupport
     attr_accessor :menu
     attr_accessor :breadcrumb
     attr_accessor :copyright
+    attr_accessor :css
+
   end
 
   def self.append_features(base)
@@ -17,7 +19,7 @@ module MollioSupport
     base.before_filter :auto_select_menu
   end
 
-  def add_breadcrumb(label, url)
+  def add_breadcrumb(label, url = nil)
     @page.breadcrumb << { :label => label, :url => url }
   end
 
@@ -58,6 +60,7 @@ module MollioSupport
     @page.copyright = "&copy; Some Company"
     @page.breadcrumb = []
     @page.menu = []
+    @page.css = []
   end
 
 end
