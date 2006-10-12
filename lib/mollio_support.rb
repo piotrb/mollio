@@ -9,6 +9,7 @@ module MollioSupport
     attr_accessor :breadcrumb
     attr_accessor :copyright
     attr_accessor :css
+    attr_accessor :search_url
 
   end
 
@@ -61,6 +62,7 @@ module MollioSupport
     @page.breadcrumb = []
     @page.menu = []
     @page.css = []
+    @page.search_url = ""
   end
 
 end

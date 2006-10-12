@@ -24,11 +24,6 @@ http://creativecommons.org/licenses/GPL/2.0/
 <link rel="stylesheet" type="text/css" href="<%= @page.template_base %>css/ie6_or_less.css" />
 <![endif]-->
 <script type="text/javascript" src="<%= @page.template_base %>js/common.js"></script>
-<style type="text/css" media="screen">
-#search {
-	display: none;
-}
-</style>
 </head>
 <body id="type-a">
 <div id="wrap">
@@ -37,9 +32,9 @@ http://creativecommons.org/licenses/GPL/2.0/
 
 		<div id="site-name"><%= @page.site_name %></div>
 		<div id="search">
-			<form action="">
-			<label for="searchsite">Site Search:</label>
-			<input id="searchsite" name="searchsite" type="text" />
+			<form action="<%= @page.search_url %>">
+			<label for="searchsite">Search:</label>
+			<input id="searchsite" name="searchsite" type="text" value="<%= params['searchsite'] %>"/>
 			<input type="submit" value="Go" class="f-submit" />
 			</form>
 		</div>
