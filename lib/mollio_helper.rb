@@ -68,13 +68,13 @@ module MollioHelper
 
         li_body = ""
         if item[:url].blank?
-          li_body << content_tag("a", item[:label])
+          li_body << link_to(item[:label], "#")
         else
           li_body << link_to(item[:label], item[:url])
         end
         li_body << children_body if item[:children]
 
-        ul_body << content_tag("li", li_body, options_for_li) if item[:url] || !children_body.blank?
+        ul_body << "\n" << content_tag("li", li_body, options_for_li) << "\n" if item[:url] || (!item[:url] && item[:children].blank?) || !children_body.blank?
 
       end
 
@@ -82,7 +82,7 @@ module MollioHelper
 
     out = ""
 
-    out << content_tag("ul", ul_body, options_for_ul) unless ul_body.blank?
+    out << content_tag("ul", ul_body, options_for_ul) << "\n" unless ul_body.blank?
 
     out
   end
