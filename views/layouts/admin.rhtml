@@ -31,6 +31,7 @@ http://creativecommons.org/licenses/GPL/2.0/
 	<div id="header">
 
 		<div id="site-name"><%= @page.site_name %></div>
+<% unless @page.search_url.blank? -%>
 		<div id="search">
 			<form action="<%= @page.search_url %>">
 			<label for="searchsite">Search:</label>
@@ -38,6 +39,7 @@ http://creativecommons.org/licenses/GPL/2.0/
 			<input type="submit" value="Go" class="f-submit" />
 			</form>
 		</div>
+<% end -%>
 
 		<%= build_menu(@page.menu) %>
 
