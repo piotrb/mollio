@@ -9,7 +9,7 @@ class ScaffoldingSandbox
   
   def default_input_block
     Proc.new { |record, column| 
-      %!<%= field_label("#{column.human_name}", "#{record}_#{column.name}", true) {\n\t#{input(record, column.name)}\n} %>\n!
+      %!<%= field_label("#{column.human_name}", ["#{record}", "#{column.name}"], true) {\n\t#{input(record, column.name)}\n} %>\n!
     }
   end
   
@@ -99,6 +99,12 @@ class MollioScaffoldGenerator < Rails::Generator::NamedBase
                              "#{action}.rhtml"),
                    :assigns => { :action => action }
       end
+
+      m.template "view_partial_list.rhtml",
+                 File.join('app/views',
+                           controller_class_path,
+                           controller_file_name,
+                           "_list.rhtml")
 
       # Controller class, functional test, helper, and views.
       m.template 'controller.rb',

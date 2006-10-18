@@ -6,7 +6,18 @@ module MollioHelper
   end
 
   def field_label(label, id, required = true)
-    out = %(<label for="#{id}"><b>#{required ? %[<span class="req">*</span>] : ""}#{label}:</b>)
+    klass = ""
+    if id.kind_of? Array
+      object_name, method = id
+      id = "#{object_name}_#{method}"
+      object = instance_variable_get("@#{object_name}")
+      if object && object.respond_to?("errors") && object.errors.respond_to?("on")
+        if object.errors.on(method)
+          klass = "error"
+        end
+      end
+    end
+    out = %(<label for="#{id}" class="#{klass}"><b>#{required ? %[<span class="req">*</span>] : ""}#{label}:</b>)
     out << yield if block_given?
     out << %(<br /></label>)
     out

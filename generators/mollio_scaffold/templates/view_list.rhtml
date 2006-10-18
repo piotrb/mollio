@@ -1,28 +1,5 @@
 <h1>Listing <%= plural_name %></h1>
 
-<table class="table1">
-  <tr>
-<% for column in model_instance.class.content_columns -%>
-    <th><%= column.human_name %></th>
-<% end -%>
-    <td colspan="3">&nbsp;</td>
-  </tr>
+<%%= render(:partial => "list", :locals => { :<%= singular_name %>_pages => @<%= singular_name %>_pages, :<%= plural_name %> => @<%= plural_name %> }) %>
 
-<%% for <%= singular_name %> in @<%= plural_name %> %>
-  <tr>
-<% for column in model_instance.class.content_columns -%>
-    <td><%%=h <%= singular_name %>.<%= column.name %> %></td>
-<% end -%>
-    <th class="sub"><%%= link_to 'Show', :action => 'show<%= suffix %>', :id => <%= singular_name %> %></th>
-    <th class="sub"><%%= link_to 'Edit', :action => 'edit<%= suffix %>', :id => <%= singular_name %> %></th>
-    <th class="sub"><%%= link_to 'Destroy', { :action => 'destroy<%= suffix %>', :id => <%= singular_name %> }, :confirm => 'Are you sure?', :post => true %></th>
-  </tr>
-<%% end %>
-</table>
-
-<%%= link_to 'Previous page', { :page => @<%= singular_name %>_pages.current.previous } if @<%= singular_name %>_pages.current.previous %>
-<%%= link_to 'Next page', { :page => @<%= singular_name %>_pages.current.next } if @<%= singular_name %>_pages.current.next %> 
-
-<br />
-
-<%%= link_to 'New <%= singular_name %>', :action => 'new<%= suffix %>' %>
+<%%= link_to 'New <%= singular_name %>', new_<%= singular_name %>_url() %>

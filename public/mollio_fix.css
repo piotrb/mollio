@@ -1,2 +1,5 @@
-form.f-wrap-1 label .date_time {margin-left: 10px;}
-form.f-wrap-1 label .date_time * {width: auto; float: none; margin-left: 0;}
+form.f-wrap-1 label .date_time { margin-left: 10px; }
+form.f-wrap-1 label .date_time select { width: auto; float: none; margin-left: 0; }
+form.f-wrap-1 label .date_time select option { padding: 0 5px 0 3px; }
+form.f-wrap-1 label span.fieldWithErrors { float: left; display: block; }
+form.f-wrap-1 label span.fieldWithErrors input { float: none; }
