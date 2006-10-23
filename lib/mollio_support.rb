@@ -5,10 +5,12 @@ module MollioSupport
     attr_accessor :template_base
     attr_accessor :title
     attr_accessor :site_name
+    attr_accessor :site_tagline
     attr_accessor :menu
     attr_accessor :breadcrumb
     attr_accessor :copyright
     attr_accessor :css
+    attr_accessor :js
     attr_accessor :search_url
 
   end
@@ -19,6 +21,8 @@ module MollioSupport
     base.before_filter :setup_page_info
     base.before_filter :auto_select_menu
   end
+
+protected
 
   def add_breadcrumb(label, url = nil)
     @page.breadcrumb << { :label => label, :url => url }
@@ -58,10 +62,12 @@ module MollioSupport
     @page.template_base = "/mollio/"
     @page.title = "Title"
     @page.site_name = "Site Name"
+    @page.site_tagline = "Site Tagline"
     @page.copyright = "&copy; Some Company"
     @page.breadcrumb = []
     @page.menu = []
     @page.css = []
+    @page.js = []
     @page.search_url = ""
   end
 

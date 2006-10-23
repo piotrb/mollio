@@ -16,6 +16,9 @@ http://creativecommons.org/licenses/GPL/2.0/
 <% @page.css.each do |css| -%>
 <%= stylesheet_link_tag(css) %>
 <% end -%>
+<% @page.js.each do |js| -%>
+<%= javascript_include_tag(js) %>
+<% end -%>
 <%= stylesheet_link_tag(@page.template_base + "mollio_fix.css") %>
 <link rel="stylesheet" type="text/css" href="<%= @page.template_base %>css/main.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="<%= @page.template_base %>css/print.css" media="print" />
@@ -31,6 +34,7 @@ http://creativecommons.org/licenses/GPL/2.0/
 	<div id="header">
 
 		<div id="site-name"><%= @page.site_name %></div>
+		<% if @page.site_tagline -%><div id="site-tagline"><%= @page.site_tagline %></div><% end -%>
 <% unless @page.search_url.blank? -%>
 		<div id="search">
 			<form action="<%= @page.search_url %>">
@@ -53,7 +57,9 @@ http://creativecommons.org/licenses/GPL/2.0/
 			<%= build_breadcrumb(@page.breadcrumb) %>
 
 			<% if flash[:error] %><p class="error"><%= flash[:error] %></p><% end %>
+			<% if flash[:warning] %><p class="error"><%= flash[:warning] %></p><% end %>
 			<% if flash[:notice] %><p class="highlight"><%= flash[:notice] %></p><% end %>
+			<% if flash[:message] %><p class="highlight"><%= flash[:message] %></p><% end %>
 
 			<%= yield %>
 
