@@ -114,4 +114,8 @@ module MollioHelper
 
   end
 
+  def value_field_tag(value)
+    content_tag "span", value, :class => "f-value"
+  end
+
 end

@@ -4,5 +4,6 @@ form.f-wrap-1 label .date_time select option { padding: 0 5px 0 3px; }
 form.f-wrap-1 label span.fieldWithErrors { float: left; display: block; }
 form.f-wrap-1 label span.fieldWithErrors input { float: none; }
 
+form.f-wrap-1 label span.f-value {width:15em;float:left;margin-left:10px}
 
 #header #site-tagline {font: 100% arial;letter-spacing: -.05em;margin:0 0 0 40px;padding:3px 0;color:#ccc;border:none}

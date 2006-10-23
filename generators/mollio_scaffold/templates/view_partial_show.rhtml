@@ -1,0 +1,3 @@
+<% for column in model_instance.class.content_columns -%>
+<div><b><%= column.human_name %>:</b> <%%=h @<%= singular_name %>.<%= column.name %> %></div>
+<% end -%>

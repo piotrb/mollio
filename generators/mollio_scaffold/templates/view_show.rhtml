@@ -1,6 +1,4 @@
-<% for column in model_instance.class.content_columns -%>
-<div><b><%= column.human_name %>:</b> <%%=h @<%= singular_name %>.<%= column.name %> %></div>
-<% end -%>
+<%%= render :partial => "show", :locals => { :<%= singular_name %> => @<%= singular_name %> } %>
 
 <%%= link_to 'Edit', :action => 'edit<%= suffix %>', :id => @<%= singular_name %> %> |
 <%%= link_to 'Back', :action => 'list<%= suffix %>' %>

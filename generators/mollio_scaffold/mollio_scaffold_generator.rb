@@ -100,11 +100,13 @@ class MollioScaffoldGenerator < Rails::Generator::NamedBase
                    :assigns => { :action => action }
       end
 
-      m.template "view_partial_list.rhtml",
-                 File.join('app/views',
-                           controller_class_path,
-                           controller_file_name,
-                           "_list.rhtml")
+      ["list", "show"].each do |action|
+        m.template "view_partial_#{action}.rhtml",
+                   File.join('app/views',
+                             controller_class_path,
+                             controller_file_name,
+                             "_#{action}.rhtml")
+      end
 
       # Controller class, functional test, helper, and views.
       m.template 'controller.rb',
