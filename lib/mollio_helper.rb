@@ -48,6 +48,11 @@ module MollioHelper
     %!<span class="date_time">#{o}</span>!
   end
 
+  def date_select(*p)
+    o = super(*p)
+    %!<span class="date_time">#{o}</span>!
+  end
+
   def submit_row()
     out = %(<div class="f-submit-wrap">)
     out << yield
