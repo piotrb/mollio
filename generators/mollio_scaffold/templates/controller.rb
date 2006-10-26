@@ -1,4 +1,10 @@
 class <%= controller_class_name %>Controller < ApplicationController
+
+  def set_list_breadcrumb
+    add_breadcrumb "<%= plural_name %>", :controller => "<%= plural_name %>", :action => "list"
+  end
+  before_filter :set_list_breadcrumb
+
 <% unless suffix -%>
   def index
     list
@@ -16,25 +22,21 @@ class <%= controller_class_name %>Controller < ApplicationController
          :redirect_to => { :action => :list<%= suffix %> }
 
   def list<%= suffix %>
-    add_breadcrumb "<%= plural_name %>", :controller => "<%= plural_name %>", :action => "list"
     @<%= singular_name %>_pages, @<%= plural_name %> = paginate :<%= plural_name %>, :per_page => 10
   end
 
   def show<%= suffix %>
     @<%= singular_name %> = <%= model_name %>.find(params[:id])
-    add_breadcrumb "<%= plural_name %>", :controller => "<%= plural_name %>", :action => "list"
     add_breadcrumb @<%= singular_name %>.first, :controller => "<%= plural_name %>", :action => "show", :id => @<%= singular_name %>
   end
 
   def new<%= suffix %>
     @<%= singular_name %> = <%= model_name %>.new
-    add_breadcrumb "<%= plural_name %>", :controller => "<%= plural_name %>", :action => "list"
     add_breadcrumb "new"
   end
 
   def create<%= suffix %>
     @<%= singular_name %> = <%= model_name %>.new(params[:<%= singular_name %>])
-    add_breadcrumb "<%= plural_name %>", :controller => "<%= plural_name %>", :action => "list"
     add_breadcrumb "new"
     if @<%= singular_name %>.save
       flash[:notice] = '<%= model_name %> was successfully created.'
@@ -46,14 +48,12 @@ class <%= controller_class_name %>Controller < ApplicationController
 
   def edit<%= suffix %>
     @<%= singular_name %> = <%= model_name %>.find(params[:id])
-    add_breadcrumb "<%= plural_name %>", :controller => "<%= plural_name %>", :action => "list"
     add_breadcrumb @<%= singular_name %>.first, :controller => "<%= plural_name %>", :action => "show", :id => @<%= singular_name %>
     add_breadcrumb "edit"
   end
 
   def update
     @<%= singular_name %> = <%= model_name %>.find(params[:id])
-    add_breadcrumb "<%= plural_name %>", :controller => "<%= plural_name %>", :action => "list"
     add_breadcrumb @<%= singular_name %>.first, :controller => "<%= plural_name %>", :action => "show", :id => @<%= singular_name %>
     add_breadcrumb "edit"
     if @<%= singular_name %>.update_attributes(params[:<%= singular_name %>])
