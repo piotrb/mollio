@@ -60,12 +60,21 @@ class <%= controller_class_name %>ControllerTest < Test::Unit::TestCase
   def test_create
     num_<%= plural_name %> = <%= model_name %>.count
 
-    post :create<%= suffix %>, :<%= singular_name %> => {}
+    post :create<%= suffix %>, :<%= singular_name %> => {} # todo: fill in valid create data
+
+    assert_valid assigns(:<%= singular_name =>)
 
     assert_response :redirect
     assert_redirected_to :action => 'list<%= suffix %>'
 
     assert_equal num_<%= plural_name %> + 1, <%= model_name %>.count
+  end
+
+  def test_create_error
+    num_<%= plural_name %> = <%= model_name %>.count
+    post :create<%= suffix %>, :<%= singular_name %> => {}
+    assert_response :success
+    assert_equal num_<%= plural_name %>, <%= model_name %>.count
   end
 
   def test_edit<%= suffix %>
@@ -80,8 +89,14 @@ class <%= controller_class_name %>ControllerTest < Test::Unit::TestCase
 
   def test_update<%= suffix %>
     post :update<%= suffix %>, :id => 1
+    assert_valid assigns(:<%= singular_name =>)
     assert_response :redirect
     assert_redirected_to :action => 'show<%= suffix %>', :id => 1
+  end
+
+  def test_update_error
+    post :update<%= suffix %>, :id => 1, :<%= singular_name %> => {}  # todo: fill in some bad params to cause error
+    assert_response :success
   end
 
   def test_destroy<%= suffix %>
