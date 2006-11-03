@@ -1,4 +1,6 @@
 Mollio
 ======
 
-Description goes here
+Helpers for generating Mollio compliant html code, includes Mollio 1.2
+
+License: MIT, please check included document
