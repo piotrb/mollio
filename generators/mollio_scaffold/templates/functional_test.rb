@@ -62,7 +62,7 @@ class <%= controller_class_name %>ControllerTest < Test::Unit::TestCase
 
     post :create<%= suffix %>, :<%= singular_name %> => {} # todo: fill in valid create data
 
-    assert_valid assigns(:<%= singular_name =>)
+    assert_valid assigns(:<%= singular_name %>)
 
     assert_response :redirect
     assert_redirected_to :action => 'list<%= suffix %>'
@@ -89,7 +89,7 @@ class <%= controller_class_name %>ControllerTest < Test::Unit::TestCase
 
   def test_update<%= suffix %>
     post :update<%= suffix %>, :id => 1
-    assert_valid assigns(:<%= singular_name =>)
+    assert_valid assigns(:<%= singular_name %>)
     assert_response :redirect
     assert_redirected_to :action => 'show<%= suffix %>', :id => 1
   end
