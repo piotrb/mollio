@@ -1,5 +1,10 @@
 module MollioHelper
 
+  def form_tag(url_for_options = {}, options = {}, *parameters_for_url, &proc)
+    options[:class] = "f-wrap-1"
+    super(url_for_options, options, *parameters_for_url, &proc)
+  end
+
   def start_form_tag(url_for_options = {}, options = {}, *parameters_for_url, &proc)
     options[:class] = "f-wrap-1"
     super(url_for_options, options, *parameters_for_url, &proc)
@@ -9,6 +14,9 @@ module MollioHelper
     klass = ""
     if id.kind_of? Array
       object_name, method = id
+      if object_name.kind_of? ActionView::Helpers::FormBuilder
+        object_name = object_name.object_name
+      end
       id = "#{object_name}_#{method}"
       object = instance_variable_get("@#{object_name}")
       if object && object.respond_to?("errors") && object.errors.respond_to?("on")
